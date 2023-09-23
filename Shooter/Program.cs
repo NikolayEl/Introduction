@@ -11,7 +11,7 @@ namespace Shooter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to my SHOOTER!");
+            Console.Title = "SHOOTER";
             Console.WriteLine("Press w - to move up,");
             Console.WriteLine("Press s - to move down,");
             Console.WriteLine("Press a - to move left,");
