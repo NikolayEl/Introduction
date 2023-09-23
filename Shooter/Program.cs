@@ -31,24 +31,31 @@ namespace Shooter
                 {
                     case ConsoleKey.W:
                         Console.WriteLine("UP");
+                        Console.Beep(200, 250);
                         break;
                     case ConsoleKey.S:
                         Console.WriteLine("DOWN");
+                        Console.Beep(200, 250);
                         break;
                     case ConsoleKey.A:
                         Console.WriteLine("LEFT");
+                        Console.Beep(200, 250);
                         break;
                     case ConsoleKey.D:
                         Console.WriteLine("RIGHT");
+                        Console.Beep(200, 250);
                         break;
                     case ConsoleKey.Spacebar:
                         Console.WriteLine("JUMP");
+                        Console.Beep(300, 500);
                         break;
                     case ConsoleKey.Enter:
                         Console.WriteLine("FIRE");
+                        for(int i = 0; i < 3; i++) Console.Beep(400, 40);
                         break;
                     case ConsoleKey.Q:
                         Console.WriteLine("QUIT");
+                        for(int i = 600; i > 100; i = i - 150) Console.Beep(i, 100);
                         break;
                 }
                 //Console.WriteLine($"You press {keys.Key} key");
