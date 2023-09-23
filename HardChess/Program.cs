@@ -30,10 +30,13 @@ namespace HardChess
                         else exam = true;
                     }
                     Console.WriteLine();
-                    if (exam) exam = false;
-                    else exam = true;
+                    if (size % 2 != 0)
+                    {
+                        if (exam) exam = false;
+                        else exam = true; 
+                    }
                 }
-                if (exam ) exam = false;
+                if (exam) exam = false;
                 else exam = true;
             }
 
