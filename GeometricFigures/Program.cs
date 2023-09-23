@@ -78,7 +78,6 @@ namespace GeometricFigures
             Console.WriteLine(delimitr);
 
             //6) 
-            //int count = 0;
             for(int i = 0, j = 0; j < 45; i ++)
             {
                 Console.Write('+');
