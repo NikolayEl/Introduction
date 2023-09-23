@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricFigures", "Geometr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessBoard", "ChessBoard\ChessBoard.csproj", "{E22D1066-51F5-4222-9A09-0D0FF291EBFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardChess", "HardChess\HardChess.csproj", "{78790926-36F1-454B-B943-F68A7152DE97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E22D1066-51F5-4222-9A09-0D0FF291EBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E22D1066-51F5-4222-9A09-0D0FF291EBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E22D1066-51F5-4222-9A09-0D0FF291EBFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78790926-36F1-454B-B943-F68A7152DE97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78790926-36F1-454B-B943-F68A7152DE97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78790926-36F1-454B-B943-F68A7152DE97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78790926-36F1-454B-B943-F68A7152DE97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
