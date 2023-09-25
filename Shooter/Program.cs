@@ -57,7 +57,10 @@ namespace Shooter
                         Console.WriteLine("QUIT");
                         for(int i = 600; i > 100; i = i - 150) Console.Beep(i, 100);
                         break;
-                }
+                    default:
+                        Console.WriteLine("Error");
+                        break;
+                }           
                 //Console.WriteLine($"You press {keys.Key} key");
 
             } while (keys.Key != ConsoleKey.Q);
