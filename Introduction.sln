@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessBoard", "ChessBoard\Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardChess", "HardChess\HardChess.csproj", "{78790926-36F1-454B-B943-F68A7152DE97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTypes", "DataTypes\DataTypes.csproj", "{9F5D221B-8945-413E-8FF9-045580A68F53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{78790926-36F1-454B-B943-F68A7152DE97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78790926-36F1-454B-B943-F68A7152DE97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78790926-36F1-454B-B943-F68A7152DE97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F5D221B-8945-413E-8FF9-045580A68F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F5D221B-8945-413E-8FF9-045580A68F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F5D221B-8945-413E-8FF9-045580A68F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F5D221B-8945-413E-8FF9-045580A68F53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
