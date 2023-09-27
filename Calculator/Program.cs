@@ -23,7 +23,7 @@ namespace Calculator
             substrings = expression.Split('+', '-', '*', '/');
 
             //Перебор получившихся значений и удаление их из строки, пока не останется только знак выражения
-            foreach (var substring in substrings)
+            foreach (string substring in substrings)
             {
                 sign = sign.Replace(substring, "");
             }
