@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -9,6 +10,7 @@ namespace Arrays
 {
     internal class Program
     {
+        //FILLRAND
         private static void fillrand(int[] arr)
         {
             Random rand = new Random(0);
@@ -26,7 +28,8 @@ namespace Arrays
                 }
             }
         }
-
+        //------------------------------------------------
+        //PRINT
         private static void print(int[] arr)
         {
             foreach(int i in arr) Console.Write(i + "\t");
@@ -71,7 +74,142 @@ namespace Arrays
                 Console.WriteLine();
             }
         }
+        //--------------------------------------------------
+        //SUM
+        private static int sum(int[] arr)
+        {
+            return arr.Sum();
+        }
+     
+        private static int sum(int[,] i_arr_2)
+        {
+            int sum_i_arr_2 = 0;
+            foreach (int i in i_arr_2) { sum_i_arr_2 += i; }
+            return sum_i_arr_2;
+        }
 
+        private static int sum(int[][] jagged_array)
+        {
+            int sum_jagged_array = 0;
+            for (int i = 0; i < jagged_array.Length; i++) sum_jagged_array += jagged_array[i].Sum();
+            return sum_jagged_array;
+        }
+
+        private static int sum(int[][,] jagged_arr_2)
+        {
+            int sum_jagged_arr_2 = 0;
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i]) sum_jagged_arr_2 += j;
+            return sum_jagged_arr_2;
+        }
+        //--------------------------------------------------
+        //COUNT
+        private static int count(int[] arr)
+        {
+            return arr.Count();
+        }
+
+        private static int count(int[,] i_arr_2)
+        {
+            int number_i_arr_2 = 0;
+            foreach (int i in i_arr_2) { ++number_i_arr_2; }
+            return number_i_arr_2;
+        }
+
+        private static int count(int[][] jagged_array)
+        {
+            int number_jagged_array = 0;
+            for (int i = 0; i < jagged_array.Length; i++) number_jagged_array += jagged_array[i].Count();
+            return number_jagged_array;
+        }
+
+        private static int count(int[][,] jagged_arr_2)
+        {
+            int number_jagged_arr_2 = 0;
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i]) ++number_jagged_arr_2;
+            return number_jagged_arr_2;
+        }
+        //--------------------------------------------------
+        //AVERAGE
+        private static double average(int[] arr)
+        {
+            return (double)sum(arr) / count(arr);
+        }
+
+        private static double average(int[,] i_arr_2)
+        {
+            return (double)(sum(i_arr_2)) / count(i_arr_2);
+        }
+
+        private static double average(int[][] jagged_array)
+        {
+            return (double)sum(jagged_array) / count(jagged_array);
+        }
+
+        private static double average(int[][,] jagged_arr_2)
+        {
+            return (double)(sum(jagged_arr_2)) / count(jagged_arr_2);
+        }
+        //--------------------------------------------------
+        //MIN
+        private static int min(int[] arr)
+        {
+            return arr.Min();
+        }
+
+        private static int min(int[,] i_arr_2)
+        {
+            int min_i_arr_2 = i_arr_2[0, 0];
+            foreach (int i in i_arr_2) { if (min_i_arr_2 > i) min_i_arr_2 = i; }
+            return min_i_arr_2;
+        }
+
+        private static int min(int[][] jagged_array)
+        {
+            int min_jagged_array = jagged_array[0].Min();
+            for (int i = 0; i < jagged_array.Length; i++) { if (min_jagged_array > jagged_array[i].Min()) min_jagged_array = jagged_array[i].Min(); }
+            return min_jagged_array;
+        }
+
+        private static int min(int[][,] jagged_arr_2)
+        {
+            int min_jagged_arr_2 = jagged_arr_2[0][0, 0];
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i])
+                {
+                    if (min_jagged_arr_2 > j) min_jagged_arr_2 = j;
+                }
+            return min_jagged_arr_2;
+        }
+        //--------------------------------------------------
+        //MAX
+        private static int max(int[] arr)
+        {
+            return arr.Max();
+        }
+
+        private static int max(int[,] i_arr_2)
+        {
+            int max_i_arr_2 = i_arr_2[0, 0];
+            foreach (int i in i_arr_2) { if (max_i_arr_2 < i) max_i_arr_2 = i; }
+            return max_i_arr_2;
+        }
+
+        private static int max(int[][] jagged_array)
+        {
+            int max_jagged_array = jagged_array[0].Max();
+            for (int i = 0; i < jagged_array.Length; i++) { if (max_jagged_array < jagged_array[i].Max()) max_jagged_array = jagged_array[i].Max(); }
+            return max_jagged_array;
+        }
+
+        private static int max(int[][,] jagged_arr_2)
+        {
+            int max_jagged_arr_2 = jagged_arr_2[0][0, 0];
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i])
+                {
+                    if (max_jagged_arr_2 < j) max_jagged_arr_2 = j;
+                }
+            return max_jagged_arr_2;
+        }
+        //--------------------------------------------------
         static readonly string delimitr = "\n-----------------------------------------------------------------------------\n";
         static void Main(string[] args)
         {
@@ -126,113 +264,81 @@ namespace Arrays
             //1) Find the sum of elements
             Console.WriteLine(delimitr);
             Console.WriteLine("SUM, AVERAGE, MIN_VALUE, MAX VALUE:");
+            //--------------------------------------------------------------------
+            //ARR
+
             Console.WriteLine("ARR:");
             //SUM
-            int sum_arr = arr.Sum();
-            Console.WriteLine("Sum of elements to arr = " + sum_arr);
+            Console.WriteLine("Sum of elements to arr = " + sum(arr));
 
             //COUNT
-            int number_arr = arr.Count();
-            Console.WriteLine("Number of elements in the arr = " + number_arr);
+            Console.WriteLine("Number of elements in the arr = " + count(arr));
 
             //AVERAGE
-            double average_arr = (double)(sum_arr) / number_arr;
-            Console.WriteLine("Average of elements in the arr = " + average_arr);
+            Console.WriteLine("Average of elements in the arr = " + average(arr));
 
             //MIN_VALUE
-            int min_arr = arr.Min();
-            Console.WriteLine("Minimum value in arr = " + min_arr);
+            Console.WriteLine("Minimum value in arr = " + min(arr));
 
             //MAX_VALUE
-            int max_arr = arr.Max();
-            Console.WriteLine("Maximum value in arr = " + max_arr);
+            Console.WriteLine("Maximum value in arr = " + max(arr));
             Console.WriteLine(delimitr);
             //---------------------------------------------------------------------
+            //I_ARR_2
 
             Console.WriteLine("I_ARR_2:");
             //SUM
-            int sum_i_arr_2 = 0;
-            foreach (int i in i_arr_2) { sum_i_arr_2 += i; }
-            Console.WriteLine("Sum of elements to i_arr_2 = " + sum_i_arr_2);
+            Console.WriteLine("Sum of elements to i_arr_2 = " + sum(i_arr_2));
 
             //COUNT
-            int number_i_arr_2 = 0;
-            foreach(int i in i_arr_2) {  ++number_i_arr_2; }
-            Console.WriteLine("Number of elements in the i_arr_2 = " + number_i_arr_2);
+            Console.WriteLine("Number of elements in the i_arr_2 = " + count(i_arr_2));
 
             //AVERAGE
-            double average_i_arr_2 = (double)(sum_i_arr_2) / number_i_arr_2;
-            Console.WriteLine("Average of elements in the i_arr_2 = " + average_i_arr_2);
+            Console.WriteLine("Average of elements in the i_arr_2 = " + average(i_arr_2));
 
             //MIN_VALUE
-            int min_i_arr_2 = i_arr_2[0,0];
-            foreach(int i in i_arr_2) { if (min_i_arr_2 > i) min_i_arr_2 = i; }
-            Console.WriteLine("Minimum value in i_arr_2 = " + min_i_arr_2);
+            Console.WriteLine("Minimum value in i_arr_2 = " + min(i_arr_2));
 
             //MAX_VALUE
-            int max_i_arr_2 = i_arr_2[0,0];
-            foreach(int i in i_arr_2) { if (max_i_arr_2 < i) max_i_arr_2 = i; }
-            Console.WriteLine("Maximum value in i_arr_2 = " + max_i_arr_2);
+            Console.WriteLine("Maximum value in i_arr_2 = " + max(i_arr_2));
             Console.WriteLine(delimitr);
             //---------------------------------------------------------------------
+            //JUGGED_ARRAY
 
             Console.WriteLine("JUGGED_ARRAY:");
             //SUM
-            int sum_jagged_array = 0;
-            for (int i = 0; i < jagged_array.Length; i++) sum_jagged_array += jagged_array[i].Sum();
-            Console.WriteLine("Sum of elements to jagged_array = " + sum_jagged_array);
+            Console.WriteLine("Sum of elements to jagged_array = " + sum(jagged_array));
 
             //COUNT
-            int number_jagged_array = 0;
-            for (int i = 0; i < jagged_array.Length; i++) number_jagged_array += jagged_array[i].Count();
-            Console.WriteLine("Number of elements in the jagged_array = " + number_jagged_array);
+            Console.WriteLine("Number of elements in the jagged_array = " + count(jagged_array));
 
             //AVERAGE
-            double average_jagged_array = (double)(sum_jagged_array) / number_jagged_array;
-            Console.WriteLine("Average of elements in the jagged_array = " + average_jagged_array);
+            Console.WriteLine("Average of elements in the jagged_array = " +average(jagged_array));
 
             //MIN_VALUE
-            int min_jagged_array = jagged_array[0].Min();
-            for(int i = 0; i < jagged_array.Length; i++) { if (min_jagged_array > jagged_array[i].Min()) min_jagged_array = jagged_array[i].Min(); }
-            Console.WriteLine("Minimum value in jagged_array = " + min_jagged_array);
+            Console.WriteLine("Minimum value in jagged_array = " +min(jagged_array));
 
             //MAX_VALUE
-            int max_jagged_array = jagged_array[0].Max();
-            for (int i = 0; i < jagged_array.Length; i++) { if (max_jagged_array < jagged_array[i].Max()) max_jagged_array = jagged_array[i].Max(); }
-            Console.WriteLine("Maximum value in jagged_array = " + max_jagged_array);
+            Console.WriteLine("Maximum value in jagged_array = " + max(jagged_array));
             Console.WriteLine(delimitr);
             //---------------------------------------------------------------------
+            //JUGGED_ARR_2
 
             Console.WriteLine("JUGGED_ARR_2:");
             //SUM
-            int sum_jagged_arr_2 = 0;
-            for (int i = 0; i < jagged_arr_2.Length; i++) foreach(int j in jagged_arr_2[i]) sum_jagged_arr_2 += j;
-            Console.WriteLine("Sum of elements to jagged_arr_2 = " + sum_jagged_arr_2);
+            Console.WriteLine("Sum of elements to jagged_arr_2 = " + sum(jagged_arr_2));
 
             //COUNT
-            int number_jagged_arr_2 = 0;
-            for (int i = 0; i < jagged_arr_2.Length; i++) foreach(int j in jagged_arr_2[i]) ++number_jagged_arr_2;
-            Console.WriteLine("Number of elements in the jagged_arr_2 = " + number_jagged_arr_2);
+            Console.WriteLine("Number of elements in the jagged_arr_2 = " + count(jagged_arr_2));
 
             //AVERAGE
-            double average_jagged_arr_2 = (double)(sum_jagged_arr_2) / number_jagged_arr_2;
-            Console.WriteLine("Average of elements in the jagged_arr_2 = " + average_jagged_arr_2);
+            Console.WriteLine("Average of elements in the jagged_arr_2 = " + average(jagged_arr_2));
 
             //MIN_VALUE
-            int min_jagged_arr_2 = jagged_arr_2[0][0,0];
-            for(int i = 0; i < jagged_arr_2.Length;i++) foreach(int j in jagged_arr_2[i]) 
-                {
-                    if (min_jagged_arr_2 > j) min_jagged_arr_2 = j;
-                }
-            Console.WriteLine("Minimum value in jagged_arr_2 = " + min_jagged_arr_2);
+            Console.WriteLine("Minimum value in jagged_arr_2 = " + min(jagged_arr_2));
 
             //MAX_VALUE
-            int max_jagged_arr_2 = jagged_arr_2[0][0, 0];
-            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i])
-                {
-                    if (max_jagged_arr_2 < j) max_jagged_arr_2 = j;
-                }
-            Console.WriteLine("Maximum value in jagged_arr_2 = " + max_jagged_arr_2);
+            Console.WriteLine("Maximum value in jagged_arr_2 = " + max(jagged_arr_2));
             Console.WriteLine(delimitr);
         }
     }
