@@ -16,6 +16,17 @@ namespace Arrays
             Random rand = new Random(0);
             for (int i = 0; i < arr.Length; i++) arr[i] = rand.Next(100, 200);
         }
+        private static void fillrand(double[] arr)
+        {
+            Random rand = new Random(0);
+            for (int i = 0; i < arr.Length; i++) arr[i] = (double)rand.Next(100, 200) / 100;
+        }
+
+        private static void fillrand(char[] arr)
+        {
+            Random rand = new Random(0);
+            for (int i = 0; i < arr.Length; i++) arr[i] = (char)rand.Next(100, 200) ;
+        }
 
         private static void fillrand(int[,] i_arr_2)
         {
@@ -30,9 +41,9 @@ namespace Arrays
         }
         //------------------------------------------------
         //PRINT
-        private static void print(int[] arr)
+        private static void print<T>(T[] arr)
         {
-            foreach(int i in arr) Console.Write(i + "\t");
+            foreach(T i in arr) Console.Write(i + "\t");
         }
 
         private static void print(int[,] i_arr_2)
@@ -80,7 +91,18 @@ namespace Arrays
         {
             return arr.Sum();
         }
-     
+
+        private static double sum(double[] arr)
+        {
+            return arr.Sum();
+        }
+        private static int sum(char[] arr)
+        {
+            int summa = 0;
+            foreach (char c in arr) summa += c;
+            return summa;
+        }
+
         private static int sum(int[,] i_arr_2)
         {
             int sum_i_arr_2 = 0;
@@ -216,8 +238,7 @@ namespace Arrays
             Console.Write("Enter size array: ");
             //int n = Convert.ToInt32(Console.ReadLine());
             int n = 5;
-            int[] arr = new int[n];
-            Random rand = new Random(0);
+            char[] arr = new char[n];
             fillrand(arr);
             Console.WriteLine("PRINT ARR:");
             print(arr);
@@ -271,7 +292,7 @@ namespace Arrays
             //SUM
             Console.WriteLine("Sum of elements to arr = " + sum(arr));
 
-            //COUNT
+/*            //COUNT
             Console.WriteLine("Number of elements in the arr = " + count(arr));
 
             //AVERAGE
@@ -282,7 +303,7 @@ namespace Arrays
 
             //MAX_VALUE
             Console.WriteLine("Maximum value in arr = " + max(arr));
-            Console.WriteLine(delimitr);
+            Console.WriteLine(delimitr);*/
             //---------------------------------------------------------------------
             //I_ARR_2
 
