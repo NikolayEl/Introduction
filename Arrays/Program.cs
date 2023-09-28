@@ -66,6 +66,10 @@ namespace Arrays
                 }
                 Console.WriteLine();
             }
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+
+            Console.WriteLine(delimitr);
             int[][,] jagged_arr_2 = new int[][,]
             {
                 i_arr_2,
@@ -75,6 +79,18 @@ namespace Arrays
                     {1024, 2048, 3072, 4096}
                 }
             };
+            for (int i = 0; i < jagged_arr_2.Length; i++)
+            {
+                for (int j = 0; j < jagged_arr_2[i].GetLength(0); j++)
+                {
+                    for (int k = 0; k < jagged_arr_2[i].GetLength(1); k++)
+                    {
+                        Console.Write(jagged_arr_2[i][j, k] + "\t");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
