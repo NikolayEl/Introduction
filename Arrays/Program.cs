@@ -16,6 +16,7 @@ namespace Arrays
             Random rand = new Random(0);
             for (int i = 0; i < arr.Length; i++) arr[i] = rand.Next(100, 200);
         }
+
         private static void fillrand(double[] arr)
         {
             Random rand = new Random(0);
@@ -39,6 +40,28 @@ namespace Arrays
                 }
             }
         }
+        private static void fillrand(double[,] i_arr_2)
+        {
+            Random rand = new Random(0);
+            for (int i = 0; i < i_arr_2.GetLength(0); i++)
+            {
+                for (int j = 0; j < i_arr_2.GetLength(1); j++)
+                {
+                    i_arr_2[i, j] = (double)rand.Next(100) / 100;
+                }
+            }
+        }
+        private static void fillrand(char[,] i_arr_2)
+        {
+            Random rand = new Random(0);
+            for (int i = 0; i < i_arr_2.GetLength(0); i++)
+            {
+                for (int j = 0; j < i_arr_2.GetLength(1); j++)
+                {
+                    i_arr_2[i, j] = (char)rand.Next(100);
+                }
+            }
+        }
         //------------------------------------------------
         //PRINT
         private static void print<T>(T[] arr)
@@ -46,7 +69,7 @@ namespace Arrays
             foreach(T i in arr) Console.Write(i + "\t");
         }
 
-        private static void print(int[,] i_arr_2)
+        private static void print<T>(T[,] i_arr_2)
         {
             for (int i = 0; i < i_arr_2.GetLength(0); i++)
             {
@@ -58,7 +81,7 @@ namespace Arrays
             }
         }
 
-        private static void print(int[][] jagged_array)
+        private static void print<T>(T[][] jagged_array)
         {
             for (int i = 0; i < jagged_array.Length; i++)
             {
@@ -70,7 +93,7 @@ namespace Arrays
             }
         }
 
-        private static void print(int[][,] jagged_arr_2)
+        private static void print<T>(T[][,] jagged_arr_2)
         {
             for (int i = 0; i < jagged_arr_2.Length; i++)
             {
@@ -96,6 +119,7 @@ namespace Arrays
         {
             return arr.Sum();
         }
+
         private static int sum(char[] arr)
         {
             int summa = 0;
@@ -110,10 +134,38 @@ namespace Arrays
             return sum_i_arr_2;
         }
 
+        private static double sum(double[,] i_arr_2)
+        {
+            double sum_i_arr_2 = 0;
+            foreach (double i in i_arr_2) { sum_i_arr_2 += i; }
+            return sum_i_arr_2;
+        }
+
+        private static int sum(char[,] i_arr_2)
+        {
+            int sum_i_arr_2 = 0;
+            foreach (int i in i_arr_2) { sum_i_arr_2 += i; }
+            return sum_i_arr_2;
+        }
+
         private static int sum(int[][] jagged_array)
         {
             int sum_jagged_array = 0;
             for (int i = 0; i < jagged_array.Length; i++) sum_jagged_array += jagged_array[i].Sum();
+            return sum_jagged_array;
+        }
+
+        private static double sum(double[][] jagged_array)
+        {
+            double sum_jagged_array = 0;
+            for (int i = 0; i < jagged_array.Length; i++) sum_jagged_array += jagged_array[i].Sum();
+            return sum_jagged_array;
+        }
+
+        private static int sum(char[][] jagged_array)
+        {
+            int sum_jagged_array = 0;
+            for (int i = 0; i < jagged_array.Length; i++) foreach(char j in jagged_array[i]) sum_jagged_array += j;
             return sum_jagged_array;
         }
 
@@ -123,31 +175,48 @@ namespace Arrays
             for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i]) sum_jagged_arr_2 += j;
             return sum_jagged_arr_2;
         }
-        //--------------------------------------------------
-        //COUNT
-        private static int count(int[] arr)
+
+        private static double sum(double[][,] jagged_arr_2)
         {
-            return arr.Count();
+            double sum_jagged_arr_2 = 0;
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i]) sum_jagged_arr_2 += j;
+            return sum_jagged_arr_2;
         }
 
-        private static int count(int[,] i_arr_2)
+        private static int sum(char[][,] jagged_arr_2)
+        {
+            int sum_jagged_arr_2 = 0;
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i]) sum_jagged_arr_2 += j;
+            return sum_jagged_arr_2;
+        }
+        //--------------------------------------------------
+        //COUNT
+        private static int count<T>(T[] arr)
+        {
+            int count = 0;
+            foreach (T i in arr) count++;
+            return count;
+        }
+
+
+        private static int count<T>(T[,] i_arr_2)
         {
             int number_i_arr_2 = 0;
-            foreach (int i in i_arr_2) { ++number_i_arr_2; }
+            foreach (T i in i_arr_2) { number_i_arr_2++; }
             return number_i_arr_2;
         }
 
-        private static int count(int[][] jagged_array)
+        private static int count<T>(T[][] jagged_array)
         {
             int number_jagged_array = 0;
             for (int i = 0; i < jagged_array.Length; i++) number_jagged_array += jagged_array[i].Count();
             return number_jagged_array;
         }
 
-        private static int count(int[][,] jagged_arr_2)
+        private static int count<T>(T[][,] jagged_arr_2)
         {
             int number_jagged_arr_2 = 0;
-            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i]) ++number_jagged_arr_2;
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (T j in jagged_arr_2[i]) ++number_jagged_arr_2;
             return number_jagged_arr_2;
         }
         //--------------------------------------------------
@@ -157,12 +226,37 @@ namespace Arrays
             return (double)sum(arr) / count(arr);
         }
 
+        private static double average(double[] arr)
+        {
+            return (double)sum(arr) / count(arr);
+        }
+
+        private static double average(char[] arr)
+        {
+            return (double)sum(arr) / count(arr);
+        }
+
         private static double average(int[,] i_arr_2)
         {
             return (double)(sum(i_arr_2)) / count(i_arr_2);
         }
-
+        private static double average(double[,] i_arr_2)
+        {
+            return (double)(sum(i_arr_2)) / count(i_arr_2);
+        }
+        private static double average(char[,] i_arr_2)
+        {
+            return (double)(sum(i_arr_2)) / count(i_arr_2);
+        }
         private static double average(int[][] jagged_array)
+        {
+            return (double)sum(jagged_array) / count(jagged_array);
+        }
+        private static double average(double[][] jagged_array)
+        {
+            return (double)sum(jagged_array) / count(jagged_array);
+        }
+        private static double average(char[][] jagged_array)
         {
             return (double)sum(jagged_array) / count(jagged_array);
         }
@@ -171,12 +265,22 @@ namespace Arrays
         {
             return (double)(sum(jagged_arr_2)) / count(jagged_arr_2);
         }
+        private static double average(double[][,] jagged_arr_2)
+        {
+            return (double)(sum(jagged_arr_2)) / count(jagged_arr_2);
+        }
+        private static double average(char[][,] jagged_arr_2)
+        {
+            return (double)(sum(jagged_arr_2)) / count(jagged_arr_2);
+        }
         //--------------------------------------------------
         //MIN
-        private static int min(int[] arr)
+        private static T min<T>(T[] arr)
         {
+
             return arr.Min();
         }
+
 
         private static int min(int[,] i_arr_2)
         {
@@ -184,10 +288,33 @@ namespace Arrays
             foreach (int i in i_arr_2) { if (min_i_arr_2 > i) min_i_arr_2 = i; }
             return min_i_arr_2;
         }
-
+        private static double min(double[,] i_arr_2)
+        {
+            double min_i_arr_2 = i_arr_2[0, 0];
+            foreach (double i in i_arr_2) { if (min_i_arr_2 > i) min_i_arr_2 = i; }
+            return min_i_arr_2;
+        }
+        private static char min(char[,] i_arr_2)
+        {
+            char min_i_arr_2 = i_arr_2[0, 0];
+            foreach (char i in i_arr_2) { if (min_i_arr_2 > i) min_i_arr_2 = i; }
+            return min_i_arr_2;
+        }
         private static int min(int[][] jagged_array)
         {
             int min_jagged_array = jagged_array[0].Min();
+            for (int i = 0; i < jagged_array.Length; i++) { if (min_jagged_array > jagged_array[i].Min()) min_jagged_array = jagged_array[i].Min(); }
+            return min_jagged_array;
+        }
+        private static double min(double[][] jagged_array)
+        {
+            double min_jagged_array = jagged_array[0].Min();
+            for (int i = 0; i < jagged_array.Length; i++) { if (min_jagged_array > jagged_array[i].Min()) min_jagged_array = jagged_array[i].Min(); }
+            return min_jagged_array;
+        }
+        private static char min(char[][] jagged_array)
+        {
+            char min_jagged_array = jagged_array[0].Min();
             for (int i = 0; i < jagged_array.Length; i++) { if (min_jagged_array > jagged_array[i].Min()) min_jagged_array = jagged_array[i].Min(); }
             return min_jagged_array;
         }
@@ -201,9 +328,27 @@ namespace Arrays
                 }
             return min_jagged_arr_2;
         }
+        private static double min(double[][,] jagged_arr_2)
+        {
+            double min_jagged_arr_2 = jagged_arr_2[0][0, 0];
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (double j in jagged_arr_2[i])
+                {
+                    if (min_jagged_arr_2 > j) min_jagged_arr_2 = j;
+                }
+            return min_jagged_arr_2;
+        }
+        private static char min(char[][,] jagged_arr_2)
+        {
+            char min_jagged_arr_2 = jagged_arr_2[0][0, 0];
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (char j in jagged_arr_2[i])
+                {
+                    if (min_jagged_arr_2 > j) min_jagged_arr_2 = j;
+                }
+            return min_jagged_arr_2;
+        }
         //--------------------------------------------------
         //MAX
-        private static int max(int[] arr)
+        private static T max<T>(T[] arr)
         {
             return arr.Max();
         }
@@ -214,18 +359,58 @@ namespace Arrays
             foreach (int i in i_arr_2) { if (max_i_arr_2 < i) max_i_arr_2 = i; }
             return max_i_arr_2;
         }
-
+        private static double max(double[,] i_arr_2)
+        {
+            double max_i_arr_2 = i_arr_2[0, 0];
+            foreach (double i in i_arr_2) { if (max_i_arr_2 < i) max_i_arr_2 = i; }
+            return max_i_arr_2;
+        }
+        private static char max(char[,] i_arr_2)
+        {
+            char max_i_arr_2 = i_arr_2[0, 0];
+            foreach (char i in i_arr_2) { if (max_i_arr_2 < i) max_i_arr_2 = i; }
+            return max_i_arr_2;
+        }
         private static int max(int[][] jagged_array)
         {
             int max_jagged_array = jagged_array[0].Max();
             for (int i = 0; i < jagged_array.Length; i++) { if (max_jagged_array < jagged_array[i].Max()) max_jagged_array = jagged_array[i].Max(); }
             return max_jagged_array;
         }
-
+        private static double max(double[][] jagged_array)
+        {
+            double max_jagged_array = jagged_array[0].Max();
+            for (int i = 0; i < jagged_array.Length; i++) { if (max_jagged_array < jagged_array[i].Max()) max_jagged_array = jagged_array[i].Max(); }
+            return max_jagged_array;
+        }
+        private static char max(char[][] jagged_array)
+        {
+            char max_jagged_array = jagged_array[0].Max();
+            for (int i = 0; i < jagged_array.Length; i++) { if (max_jagged_array < jagged_array[i].Max()) max_jagged_array = jagged_array[i].Max(); }
+            return max_jagged_array;
+        }
         private static int max(int[][,] jagged_arr_2)
         {
             int max_jagged_arr_2 = jagged_arr_2[0][0, 0];
             for (int i = 0; i < jagged_arr_2.Length; i++) foreach (int j in jagged_arr_2[i])
+                {
+                    if (max_jagged_arr_2 < j) max_jagged_arr_2 = j;
+                }
+            return max_jagged_arr_2;
+        }
+        private static double max(double[][,] jagged_arr_2)
+        {
+            double max_jagged_arr_2 = jagged_arr_2[0][0, 0];
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (double j in jagged_arr_2[i])
+                {
+                    if (max_jagged_arr_2 < j) max_jagged_arr_2 = j;
+                }
+            return max_jagged_arr_2;
+        }
+        private static char max(char[][,] jagged_arr_2)
+        {
+            char max_jagged_arr_2 = jagged_arr_2[0][0, 0];
+            for (int i = 0; i < jagged_arr_2.Length; i++) foreach (char j in jagged_arr_2[i])
                 {
                     if (max_jagged_arr_2 < j) max_jagged_arr_2 = j;
                 }
@@ -238,7 +423,7 @@ namespace Arrays
             Console.Write("Enter size array: ");
             //int n = Convert.ToInt32(Console.ReadLine());
             int n = 5;
-            char[] arr = new char[n];
+            double[] arr = new double[n];
             fillrand(arr);
             Console.WriteLine("PRINT ARR:");
             print(arr);
@@ -249,7 +434,8 @@ namespace Arrays
             //Console.Write("Enter the number of row elements: ");
             // int cols = Convert.ToInt32(Console.ReadLine());
             int rows = 4, cols = 3;
-            int[,] i_arr_2 = new int[rows, cols];
+            //char[,] i_arr_2 = new char[rows, cols];
+            double[,] i_arr_2 = new double[rows, cols];
             fillrand(i_arr_2);
             Console.WriteLine("PRINT I_ARR_2");
             print(i_arr_2);
@@ -270,7 +456,7 @@ namespace Arrays
             Console.WriteLine(delimitr);
             int[][,] jagged_arr_2 = new int[][,]
             {
-                i_arr_2,
+                //i_arr_2,
                 new int[,]
                 {
                     {256, 384, 512, 768},
@@ -292,7 +478,7 @@ namespace Arrays
             //SUM
             Console.WriteLine("Sum of elements to arr = " + sum(arr));
 
-/*            //COUNT
+            //COUNT
             Console.WriteLine("Number of elements in the arr = " + count(arr));
 
             //AVERAGE
@@ -303,7 +489,7 @@ namespace Arrays
 
             //MAX_VALUE
             Console.WriteLine("Maximum value in arr = " + max(arr));
-            Console.WriteLine(delimitr);*/
+            Console.WriteLine(delimitr);
             //---------------------------------------------------------------------
             //I_ARR_2
 
