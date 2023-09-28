@@ -13,21 +13,24 @@ namespace Arrays
         static void Main(string[] args)
         {
             Console.Write("Enter size array: ");
-            int n = Convert.ToInt32(Console.ReadLine());
+            //int n = Convert.ToInt32(Console.ReadLine());
+            int n = 5;
             int[] arr = new int[n];
             Random rand = new Random(0);
             for(int i = 0; i < arr.Length; i++) arr[i] = rand.Next(100, 200);
+            Console.WriteLine();
             for(int i = 0; i < arr.Length; i++) Console.Write(arr[i] + "\t");
             Console.WriteLine();
 
-            foreach(int i in arr) Console.Write(i + "\t");
+            //foreach(int i in arr) Console.Write(i + "\t");
             Console.WriteLine();
             Console.WriteLine(delimitr);
 
-            Console.Write("Enter number of line: ");
-            int rows = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter the number of row elements: ");
-            int cols = Convert.ToInt32(Console.ReadLine());
+            /*            Console.Write("Enter number of line: ");
+                        int rows = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter the number of row elements: ");
+                        int cols = Convert.ToInt32(Console.ReadLine());*/
+            int rows = 4, cols = 3;
 
             int[,] i_arr_2 = new int[rows, cols];
             for(int i = 0; i < rows; i++)
@@ -45,8 +48,8 @@ namespace Arrays
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine(i_arr_2.Rank);
-            foreach(int i in i_arr_2) Console.Write(i + "\t");
+            //Console.WriteLine(i_arr_2.Rank);
+            //foreach(int i in i_arr_2) Console.Write(i + "\t");
             Console.WriteLine();
             Console.WriteLine(delimitr);
 
@@ -66,6 +69,7 @@ namespace Arrays
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine(delimitr);
             int[][,] jagged_arr_2 = new int[][,]
             {
                 i_arr_2,
@@ -75,6 +79,21 @@ namespace Arrays
                     {1024, 2048, 3072, 4096}
                 }
             };
+
+            for (int i = 0; i < jagged_arr_2.Length; i++)
+            {
+                for (int j = 0; j < jagged_arr_2[i].GetLength(0) ; j++)
+                {
+                    for (int k = 0; k < jagged_arr_2[i].GetLength(1); k++)
+                    {
+                        Console.Write(jagged_arr_2[i][j, k] + "\t");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+            }
+
+
         }
     }
 }
