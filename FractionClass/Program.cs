@@ -109,10 +109,14 @@ namespace FractionClass
             else other.numerator = -other.numerator;
             return new Fraction(other.integer, other.numerator, other.denominator);
         }
-        public static Fraction operator ++(Fraction other)
+        public static Fraction operator ++(Fraction other) => new Fraction(++other.integer, other.numerator, other.denominator);
+        public static Fraction operator --(Fraction other) => new Fraction(--other.integer, other.numerator, other.denominator);
+        public static Fraction operator *(Fraction left, Fraction right)
         {
-            other.to_improper();
-            return new Fraction(0, other.numerator + other.numerator, other.denominator);
+            left.to_improper();
+            right.to_improper();
+            return new Fraction(0, left.numerator * right.numerator, left.denominator * right.denominator).to_proper().reduce();
+
         }
 
         //----------------------------------Method's-------------------------------
@@ -158,6 +162,16 @@ namespace FractionClass
             return this;
         }
 
+        public Fraction inverted()
+        {
+            this.to_improper();
+            int temp;
+            temp = this.numerator;
+            this.numerator = this.denominator;
+            this.denominator = temp;
+            return this;
+        }
+
         public void print()
         {
             Console.WriteLine((integer == 0 ? "":$"{integer}(") + (numerator == 0 ? "" : $"{numerator}/") + 
@@ -198,14 +212,29 @@ namespace FractionClass
             //Проверка операторов 
             Fraction temp3 = new Fraction(2.4);
             temp3.print();
-            Console.WriteLine(+temp3);
-            temp3.print();
-            ++temp3;
-            temp3.print();
-            //temp3.to_proper();
-            Console.WriteLine(-temp3);
-            temp3.print();
+            Console.WriteLine(delimitr);
 
+            Console.WriteLine($"Unary plus {+temp3}");
+            temp3.print();
+            Console.WriteLine(delimitr);
+
+            Console.Write($"Инкремент: {++temp3} ");
+            temp3.print();
+            Console.WriteLine(delimitr);
+
+            Console.WriteLine($"Декримент {--temp3}");
+            temp3.print();
+            Console.WriteLine(delimitr);
+
+            //temp3.to_proper();
+/*            Console.WriteLine($"Unary minus {-temp3}");
+            temp3.print();
+            Console.WriteLine(delimitr);*/
+
+            Fraction temp4 = new Fraction(2.6);
+            Console.WriteLine("Умножение дробей:");
+            Fraction temp5 = temp3 * temp4;
+            temp5.print();
 
         }
     }
