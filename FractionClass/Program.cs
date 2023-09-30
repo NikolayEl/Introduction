@@ -1,7 +1,10 @@
-﻿using System;
+﻿//#define METHODS_CHEK
+//#define STRING_CHEK
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -85,9 +88,31 @@ namespace FractionClass
             }
             Console.WriteLine($"StringConstruction:\t {this}");
         }
+
+        public Fraction(Fraction other)
+        {
+            this.integer = other.integer;
+            this.numerator= other.numerator;
+            this.denominator = other.denominator;
+            Console.WriteLine($"CopyConstructor:\t {this}");
+        }
         ~Fraction()
         {
-            Console.WriteLine($"Destructor {this}");
+            Console.WriteLine($"Destructor:\t {this}");
+        }
+
+        //----------------------------------Operator's-----------------------------
+        public static Fraction operator +(Fraction other) => other;
+        public static Fraction operator -(Fraction other)
+        {
+            if (other.integer != 0) other.integer = -other.integer;
+            else other.numerator = -other.numerator;
+            return new Fraction(other.integer, other.numerator, other.denominator);
+        }
+        public static Fraction operator ++(Fraction other)
+        {
+            other.to_improper();
+            return new Fraction(0, other.numerator + other.numerator, other.denominator);
         }
 
         //----------------------------------Method's-------------------------------
@@ -145,6 +170,7 @@ namespace FractionClass
         static readonly string delimitr = "\n-----------------------------------------------------------------------\n";
         static void Main(string[] args)
         {
+#if METHODS_CHEK
             double value = 2.003;
             int number = 3;
             Fraction temp = new Fraction(3, 27, 13);
@@ -155,8 +181,10 @@ namespace FractionClass
             temp.print();
             temp.to_proper();
             temp.print();
-            Console.WriteLine(delimitr);
+            Console.WriteLine(delimitr); 
+#endif
 
+#if STRING_CHEK
             //Ввод с клавиатуры в виде десятичной дроби и в виде дробной записи - "2.3" или "2 3/10"
             Console.Write("Enter double number: ");
             string double_number = Console.ReadLine();
@@ -164,9 +192,21 @@ namespace FractionClass
             temp2.print();
             temp2.reduce();
             temp2.print();
-            Console.WriteLine(delimitr);
+            Console.WriteLine(delimitr); 
+#endif
 
-            //
+            //Проверка операторов 
+            Fraction temp3 = new Fraction(2.4);
+            temp3.print();
+            Console.WriteLine(+temp3);
+            temp3.print();
+            ++temp3;
+            temp3.print();
+            //temp3.to_proper();
+            Console.WriteLine(-temp3);
+            temp3.print();
+
+
         }
     }
 }
