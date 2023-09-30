@@ -1,5 +1,6 @@
 ﻿//#define METHODS_CHEK
 //#define STRING_CHEK
+//#define OPERATOR_CHEK
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,8 +110,17 @@ namespace FractionClass
             else other.numerator = -other.numerator;
             return new Fraction(other.integer, other.numerator, other.denominator);
         }
+
+        public static Fraction operator +(Fraction left, Fraction right) => new Fraction(left.integer + right.integer, 
+            left.numerator * right.denominator + right.numerator * left.denominator, left.denominator * right.denominator).to_proper().reduce();
+
+        public static Fraction operator -(Fraction left, Fraction right) => new Fraction(left.integer - right.integer,
+    left.numerator * right.denominator - right.numerator * left.denominator, left.denominator * right.denominator).to_proper().reduce();
+
         public static Fraction operator ++(Fraction other) => new Fraction(++other.integer, other.numerator, other.denominator);
+
         public static Fraction operator --(Fraction other) => new Fraction(--other.integer, other.numerator, other.denominator);
+
         public static Fraction operator *(Fraction left, Fraction right)
         {
             left.to_improper();
@@ -118,6 +128,31 @@ namespace FractionClass
             return new Fraction(0, left.numerator * right.numerator, left.denominator * right.denominator).to_proper().reduce();
 
         }
+
+        public static Fraction operator /(Fraction left, Fraction right) => (left * right.inverted()).to_proper().reduce();
+
+        public static bool operator ==(Fraction left, Fraction right)
+        {
+            left.to_improper();
+            right.to_improper();
+            return (left.numerator * right.denominator == right.numerator * left.denominator);
+        }
+        public static bool operator !=(Fraction left, Fraction right) => !(left == right);
+
+        public static bool operator <=(Fraction left, Fraction right)
+        {
+            left.to_improper();
+            right.to_improper();
+            return (left.numerator * right.denominator <= right.numerator * left.denominator);
+        }
+        public static bool operator >=(Fraction left, Fraction right)
+        {
+            left.to_improper();
+            right.to_improper();
+            return (left.numerator * right.denominator >= right.numerator * left.denominator);
+        }
+        public static bool operator <(Fraction left, Fraction right) => !(left >= right);
+        public static bool operator >(Fraction left, Fraction right) => !(left <= right);
 
         //----------------------------------Method's-------------------------------
 
@@ -209,6 +244,7 @@ namespace FractionClass
             Console.WriteLine(delimitr); 
 #endif
 
+#if OPERATOR_CHEK
             //Проверка операторов 
             Fraction temp3 = new Fraction(2.4);
             temp3.print();
@@ -227,14 +263,41 @@ namespace FractionClass
             Console.WriteLine(delimitr);
 
             //temp3.to_proper();
-/*            Console.WriteLine($"Unary minus {-temp3}");
-            temp3.print();
-            Console.WriteLine(delimitr);*/
+            /*            Console.WriteLine($"Unary minus {-temp3}");
+                        temp3.print();
+                        Console.WriteLine(delimitr);*/
 
             Fraction temp4 = new Fraction(2.6);
             Console.WriteLine("Умножение дробей:");
             Fraction temp5 = temp3 * temp4;
             temp5.print();
+            Console.WriteLine(delimitr);
+
+            Console.WriteLine("деление дробей:");
+            temp5 = temp3 / temp4;
+            temp5.print();
+            Console.WriteLine(delimitr);
+
+            Console.WriteLine("Сложение дробей:");
+            temp3 = new Fraction("2/5");
+            temp4 = new Fraction("3/4");
+            (temp3 + temp4).print();
+            Console.WriteLine(delimitr);
+
+            Console.WriteLine("Сравнение дробей:");
+            temp3 = new Fraction("2/5");
+            temp4 = new Fraction("4/10");
+            Console.WriteLine(temp3 == temp4);
+            Console.WriteLine(temp3 != temp4);
+            Console.WriteLine(temp3 > temp4);
+            Console.WriteLine(temp3 < temp4);
+            Console.WriteLine(temp3 >= temp4);
+            Console.WriteLine(temp3 <= temp4); 
+#endif
+
+
+
+
 
         }
     }
