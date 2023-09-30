@@ -36,6 +36,7 @@ namespace FractionClass
             this.integer = integer;
             this.numerator = numerator;
             this.denominator = denominator;
+            Console.WriteLine($"Construction:\t {this}");
         }
 
         public Fraction(int value)
@@ -53,7 +54,7 @@ namespace FractionClass
             this.denominator = 1;
             for (int i = 0; i < count_after; i++) { denominator *= 10; }
             this.numerator = Convert.ToInt32(substrings[1]);
-            Console.WriteLine($"1ArgConstruction:\t {this}");
+            Console.WriteLine($"DoubleConstruction:\t {this}");
         }
         public Fraction(string str)
         {
@@ -75,15 +76,21 @@ namespace FractionClass
                     this.integer = Convert.ToInt32(substrings[0]);
                     str = substrings[1];
                 }
-                if(str.Contains("/")) 
-                { 
+                if (str.Contains("/"))
+                {
                     string[] substrings = str.Split('/');
                     this.numerator = Convert.ToInt32(substrings[0]);
                     this.denominator = Convert.ToInt32(substrings[1]);
                 }
             }
+            Console.WriteLine($"StringConstruction:\t {this}");
+        }
+        ~Fraction()
+        {
+            Console.WriteLine($"Destructor {this}");
         }
 
+        //----------------------------------Method's-------------------------------
 
         public Fraction to_proper()
         {
@@ -157,6 +164,9 @@ namespace FractionClass
             temp2.print();
             temp2.reduce();
             temp2.print();
+            Console.WriteLine(delimitr);
+
+            //
         }
     }
 }
