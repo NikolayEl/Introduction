@@ -1,6 +1,6 @@
 ﻿//#define METHODS_CHEK
 //#define STRING_CHEK
-//#define OPERATOR_CHEK
+#define OPERATOR_CHEK
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,21 +33,21 @@ namespace FractionClass
             this.integer = 0;
             this.numerator = 0;
             this.denominator = 1;
-            Console.WriteLine($"DefaultConstruction:\t {this}");
+            Console.WriteLine("DefaultConstruction");
         }
         public Fraction(int integer, int numerator, int denominator) 
         {
             this.integer = integer;
             this.numerator = numerator;
             this.denominator = denominator;
-            Console.WriteLine($"Construction:\t {this}");
+            Console.WriteLine("Construction");
         }
 
         public Fraction(int value)
         { integer = value;
             this.numerator = 0;
             this.denominator = 1;
-            Console.WriteLine($"1ArgConstruction:\t {this}");
+            Console.WriteLine("1ArgConstruction");
         }
 
         public Fraction(double value)
@@ -58,7 +58,7 @@ namespace FractionClass
             this.denominator = 1;
             for (int i = 0; i < count_after; i++) { denominator *= 10; }
             this.numerator = Convert.ToInt32(substrings[1]);
-            Console.WriteLine($"DoubleConstruction:\t {this}");
+            Console.WriteLine("DoubleConstruction");
         }
         public Fraction(string str)
         {
@@ -87,7 +87,7 @@ namespace FractionClass
                     this.denominator = Convert.ToInt32(substrings[1]);
                 }
             }
-            Console.WriteLine($"StringConstruction:\t {this}");
+            Console.WriteLine("StringConstruction");
         }
 
         public Fraction(Fraction other)
@@ -95,11 +95,11 @@ namespace FractionClass
             this.integer = other.integer;
             this.numerator= other.numerator;
             this.denominator = other.denominator;
-            Console.WriteLine($"CopyConstructor:\t {this}");
+            Console.WriteLine("CopyConstructor");
         }
         ~Fraction()
         {
-            Console.WriteLine($"Destructor:\t {this}");
+            Console.WriteLine("Destructor");
         }
 
         //----------------------------------Operator's-----------------------------
@@ -212,6 +212,8 @@ namespace FractionClass
             Console.WriteLine((integer == 0 ? "":$"{integer}(") + (numerator == 0 ? "" : $"{numerator}/") + 
                 (numerator == 0 ? "" : $"{denominator}") + (integer == 0 ? "" : ")")) ;
         }
+        public override string ToString() => ((integer == 0 ? "" : $"{integer}(") + (numerator == 0 ? "" : $"{numerator}/") +
+                (numerator == 0 ? "" : $"{denominator}") + (integer == 0 ? "" : ")"));
 
     }
     internal class Program
