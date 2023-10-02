@@ -1,6 +1,6 @@
 ﻿//#define METHODS_CHEK
 //#define STRING_CHEK
-#define OPERATOR_CHEK
+//#define OPERATOR_CHEK
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,14 +100,16 @@ namespace FractionClass
             temp3.Numerator = 456;
             temp3.Denominator = 789;
             Console.WriteLine(temp3);
+#endif
             Fraction A = new Fraction(2, 3, 0);
             Console.WriteLine(A);
 
             Fraction E = new Fraction(A);
             Console.WriteLine(E);
             Console.WriteLine(E.inverted());
-#endif
+            Console.WriteLine(E);
 
+        
 
 
 

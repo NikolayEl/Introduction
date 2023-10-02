@@ -218,8 +218,8 @@ namespace FractionClass
 
         public Fraction inverted()
         {
-            this.toImproper();
             Fraction inverted = new Fraction(this);
+            inverted.toImproper();
             (inverted.Numerator, inverted.Denominator) = (inverted.Denominator, inverted.Numerator);
             return inverted;
         }
