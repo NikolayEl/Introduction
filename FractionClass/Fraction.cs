@@ -28,21 +28,21 @@ namespace FractionClass
             this.integer = 0;
             this.numerator = 0;
             this.denominator = 1;
-            Console.WriteLine("DefaultConstructor");
+            Console.WriteLine($"DefaultConstructor:\t {this.GetHashCode()}");
         }
         public Fraction(int integer, int numerator, int denominator)
         {
             setInteger(integer);
             setNumerator(numerator); 
             setDenominator(denominator);
-            Console.WriteLine("Construction");
+            Console.WriteLine($"Construction:\t {this.GetHashCode()}");
         }
         public Fraction (int numerator, int denominator)
         {
             this.integer = 0;
             setNumerator(numerator);
             setDenominator(denominator);
-            Console.WriteLine("Constructor");
+            Console.WriteLine($"Constructor:\t {this.GetHashCode()}");
         }
 
         public Fraction(int value)
@@ -50,7 +50,7 @@ namespace FractionClass
             this.integer = value;
             this.numerator = 0;
             this.denominator = 1;
-            Console.WriteLine("1ArgConstruction");
+            Console.WriteLine($"1ArgConstruction:\t {this.GetHashCode()}");
         }
 
         public Fraction(double value)
@@ -61,7 +61,7 @@ namespace FractionClass
             this.denominator = 1;
             for (int i = 0; i < count_after; i++) { denominator *= 10; }
             this.numerator = Convert.ToInt32(substrings[1]);
-            Console.WriteLine("DoubleConstruction");
+            Console.WriteLine($"DoubleConstruction:\t {this.GetHashCode()}");
         }
         public Fraction(string str)
         {
@@ -90,7 +90,7 @@ namespace FractionClass
                     this.denominator = Convert.ToInt32(substrings[1]);
                 }
             }
-            Console.WriteLine("StringConstruction");
+            Console.WriteLine($"StringConstruction:\t {this.GetHashCode()}");
         }
 
         public Fraction(Fraction other)
@@ -98,11 +98,11 @@ namespace FractionClass
             this.integer = other.integer;
             this.numerator = other.numerator;
             this.denominator = other.denominator;
-            Console.WriteLine("CopyConstructor");
+            Console.WriteLine($"CopyConstructor:\t {this.GetHashCode()}");
         }
         ~Fraction()
         {
-            Console.WriteLine("Destructor");
+            Console.WriteLine($"Destructor:\t {this.GetHashCode()}");
         }
 
         //----------------------------------Operator's-----------------------------
