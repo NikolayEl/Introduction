@@ -70,6 +70,7 @@ namespace FractionClass
             this.Denominator = 1;
             for (int i = 0; i < count_after; i++) { Denominator *= 10; }
             this.Numerator = Convert.ToInt32(substrings[1]);
+            this.reduce();
             Console.WriteLine($"DoubleConstruction:\t {this.GetHashCode()}");
         }
         public Fraction(string str)
@@ -139,7 +140,7 @@ namespace FractionClass
             Fraction temp_right = new Fraction(right);
             temp_left.toImproper();
             temp_right.toImproper();
-            return new Fraction(0, temp_left.Numerator * temp_right.Numerator, temp_left.Denominator * temp_right.Denominator).toProper().reduce();
+            return new Fraction(temp_left.Numerator * temp_right.Numerator, temp_left.Denominator * temp_right.Denominator).toProper().reduce();
         }
 
         public static Fraction operator /(Fraction left, Fraction right) => (left * right.inverted()).toProper().reduce();

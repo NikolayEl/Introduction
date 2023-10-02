@@ -101,15 +101,17 @@ namespace FractionClass
             temp3.Denominator = 789;
             Console.WriteLine(temp3);
 #endif
-            Fraction A = new Fraction(2, 3, 0);
-            Console.WriteLine(A);
+            Fraction A = new Fraction(2, 3, 4);
+            Fraction B = new Fraction(3, 4, 5);
+            Fraction C = A * B;
+            Console.WriteLine($"{A} * {B} = {C}");
+            Console.WriteLine($"{A} / {B} = {A / B}");
 
-            Fraction E = new Fraction(A);
-            Console.WriteLine(E);
-            Console.WriteLine(E.inverted());
-            Console.WriteLine(E);
+            Fraction D = new Fraction(2.75);
+            Console.WriteLine(D);
 
-        
+
+
 
 
 
