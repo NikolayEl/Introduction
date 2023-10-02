@@ -94,7 +94,18 @@ namespace FractionClass
             Console.WriteLine(temp3 > temp4);
             Console.WriteLine(temp3 < temp4);
             Console.WriteLine(temp3 >= temp4);
-            Console.WriteLine(temp3 <= temp4); 
+            Console.WriteLine(temp3 <= temp4);
+
+            temp3.Integer = 123;
+            temp3.Numerator = 456;
+            temp3.Denominator = 789;
+            Console.WriteLine(temp3);
+            Fraction A = new Fraction(2, 3, 0);
+            Console.WriteLine(A);
+
+            Fraction E = new Fraction(A);
+            Console.WriteLine(E);
+            Console.WriteLine(E.inverted());
 #endif
 
 
