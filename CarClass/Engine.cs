@@ -21,6 +21,9 @@ namespace CarClass
         public double ConsumptionPerSecond
         { get { return consumptionPerSecond; } }
 
+        public double DEFAULTCONSUMPTIONPERSECOND
+        { get { return DEFAULT_CONSUMPTION_PER_SECOND; } }
+
         public void setConsumptionPerSecond(int speed)
         {
             if (speed == 0) consumptionPerSecond = DEFAULT_CONSUMPTION_PER_SECOND;

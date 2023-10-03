@@ -16,25 +16,28 @@ namespace CarClass
         private int speed;
         private int MAX_SPEED;
         private bool driverInside;
-        private bool isMove;
-        public Thread panelThread;
-        public Thread engineIdleThread;
-        public Thread freeWheelingThread;
-
-
+        private int acceleration;
+        Threads threads;
+        private struct Threads
+        {
+            public Thread panelThread;
+            public Thread engineIdleThread;
+            public Thread freeWheelingThread;
+        }
         public int Speed {  get; set; }
         public int MaxSpeed { get; set; }
         public bool DriverInside { get; set; }
         public bool IsMove { get; set; }
 
-        public Car(double consumption, int volume, int maxSpeed)
+        public Car(double DEFAULT_CONSUMPTION_PER_SECOND, int volume, int maxSpeed, int acceleration = 10)
         {
-            engine = new Engine(consumption);
+            engine = new Engine(DEFAULT_CONSUMPTION_PER_SECOND);
             tank = new Tank(volume);
             MaxSpeed = maxSpeed < MaxSpeedLowerLevel? MaxSpeedLowerLevel : maxSpeed > MaxSpeedUpperLevel? MaxSpeedUpperLevel: maxSpeed;
             DriverInside = false;
-            IsMove = false;
-            Thread.CurrentThread.Name = "mainThread";
+            this.acceleration = acceleration;
+            this.speed = 0;
+            threads = new Threads();
             Console.WriteLine($"Your car is ready to go {this.GetHashCode()}");
         }
         ~Car() { Console.WriteLine($"Car is over:\t {this.GetHashCode()}"); }
@@ -42,14 +45,14 @@ namespace CarClass
         public void getIn()
         {
             DriverInside = true;
-            panelThread = new Thread(panel);
-            panelThread.Start();
+            threads.panelThread = new Thread(panel);
+            threads.panelThread.Start();
             Console.WriteLine("Inside");
         }
         public void getOut()
         {
             DriverInside = false;
-            if (panelThread.IsBackground = true) panelThread.Abort();
+            if (threads.panelThread.IsBackground = true) threads.panelThread.Abort();
             Console.Clear();
             Console.WriteLine("Outside");
 
@@ -60,15 +63,14 @@ namespace CarClass
             {
                 Speed = 0;
                 engine.start();
-                engineIdleThread = new Thread(engile_idle);
-                engineIdleThread.Start();
+                threads.engineIdleThread = new Thread(engile_idle);
+                threads.engineIdleThread.Start();
             }
         }
         public void stop()
         {
             engine.stop();
-            if(engineIdleThread.IsBackground = true)engineIdleThread.Abort();
-            Console.WriteLine(Thread.CurrentThread.Name);
+            if(threads.engineIdleThread.IsBackground = true)threads.engineIdleThread.Abort();
         }
         public void panel()
         {
@@ -78,7 +80,7 @@ namespace CarClass
                 Console.Write($"Level fuel:\t {tank.Fuel_level} liters");
                 Console.WriteLine(tank.Fuel_level <= 5 ? "\t\t LOW FUEL" : "");
                 Console.WriteLine($"Engine is:\t {(engine.started() == true ? "started" : "stopped")}");
-                Console.WriteLine($"Speed:\t {(isMove == true ? Speed : 0)}");
+                Console.WriteLine($"Speed:\t {speed} km/h");
                 Console.WriteLine($"ConsumptionPerSecond:\t {engine.ConsumptionPerSecond} liters.");
                 Thread.Sleep(200);
             }
@@ -89,15 +91,32 @@ namespace CarClass
         {
             while (engine.started() && tank.Fuel_level > 0) 
             {
-                Thread.Sleep(600);
+                Thread.Sleep(100);
             }
         }
         public void freeWheeling()
         {
             while(--speed > 0)
             {
-                Thread.Sleep(300);
+                Thread.Sleep(600);
                 engine.setConsumptionPerSecond(speed);
+            }
+        }
+        public void accelerate()
+        {
+            if(engine.started() && DriverInside)
+            {
+                speed += acceleration;
+                if (speed > MaxSpeed) speed = MaxSpeed;
+                (threads.freeWheelingThread = new Thread(freeWheeling)).Start();
+            }
+        }
+        public void slowDown()
+        {
+            if(DriverInside)
+            {
+                speed -= acceleration;
+                if (speed < 1) speed = 0;
             }
         }
         public void control()
@@ -132,6 +151,14 @@ namespace CarClass
                         }
                         else start();
                         break;
+                    case ConsoleKey.W:
+                        accelerate();
+                        Thread.Sleep(60);
+                        break;
+                    case ConsoleKey.S:
+                        slowDown();
+                        Thread.Sleep(60);
+                        break;
                     case ConsoleKey.Escape:
                         speed = 0;
                         if (engine.started()) stop();
@@ -140,7 +167,7 @@ namespace CarClass
                     default:
                         if (tank.Fuel_level == 0) stop();
                         if (speed < 1) engine.setConsumptionPerSecond(speed = 0);
-                        if (speed == 0 && freeWheelingThread.IsBackground == true) freeWheelingThread.Abort();
+                        if (speed == 0 && threads.freeWheelingThread.IsBackground == true) threads.freeWheelingThread.Abort();
                         break;
                 }
                 
