@@ -10,7 +10,8 @@ namespace CarClass
     {
         static void Main(string[] args)
         {
-
+            Car bmw = new Car(10, 40, 250);
+            bmw.control();
         }
     }
 }

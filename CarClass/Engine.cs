@@ -11,7 +11,7 @@ namespace CarClass
         private const int MinEngineConsumption = 3;
         private const int MaxEngineConsumption = 30;
         private double DEFAULT_CONSUMPTION;
-        private double consumption;
+        private double DEFAULT_CONSUMPTION_PER_SECOND;
         private double consumptionPerSecond;
         private bool isStarted;
 
@@ -19,20 +19,35 @@ namespace CarClass
         { get; set; }
 
         public double ConsumptionPerSecond
-        { get; set; }
+        { get { return consumptionPerSecond; } }
+
+        public void setConsumptionPerSecond(int speed)
+        {
+            if (speed == 0) consumptionPerSecond = DEFAULT_CONSUMPTION_PER_SECOND;
+            else if (speed < 60) consumptionPerSecond = DEFAULT_CONSUMPTION_PER_SECOND * 20 / 3;
+            else if (speed < 100 && speed >= 60) consumptionPerSecond = DEFAULT_CONSUMPTION_PER_SECOND * 14 / 3;
+            else if (speed < 140 && speed >= 100) consumptionPerSecond = DEFAULT_CONSUMPTION_PER_SECOND * 20 / 3;
+            else if (speed < 200 && speed >= 140) consumptionPerSecond = DEFAULT_CONSUMPTION_PER_SECOND * 25 / 3;
+            else if (speed > 200) consumptionPerSecond = DEFAULT_CONSUMPTION_PER_SECOND * 10;
+        }
 
         public void start(){ isStarted = true; }
         public void stop(){ isStarted = false;}
         public bool started(){ return isStarted; }
 
-        Engine (double consumption) 
+        public Engine (double defaultConsumptionPerSecond) 
         { 
-            DEFAULT_CONSUMPTION = consumption < MinEngineConsumption? MinEngineConsumption: 
-                consumption > MaxEngineConsumption? MaxEngineConsumption: Consumption;
-            Consumption = DEFAULT_CONSUMPTION;
-            ConsumptionPerSecond = consumption;
+            DEFAULT_CONSUMPTION = defaultConsumptionPerSecond < MinEngineConsumption? MinEngineConsumption: 
+                defaultConsumptionPerSecond > MaxEngineConsumption? MaxEngineConsumption: defaultConsumptionPerSecond;
+            DEFAULT_CONSUMPTION_PER_SECOND = DEFAULT_CONSUMPTION * 3e-5;
+            setConsumptionPerSecond(0);
             isStarted = false;
             Console.WriteLine($"Engine is ready:\t {this.GetHashCode()}");
+        }
+        Engine (Engine other)
+        {
+            Consumption = other.Consumption;
+            Console.WriteLine($"CopyConstructor:\t {this.GetHashCode()}");
         }
         ~Engine() { Console.WriteLine($"Engine is stop:\t {this.GetHashCode()}"); }
 
