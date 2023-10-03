@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferParametrs", "Transf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractionClass", "FractionClass\FractionClass.csproj", "{FA8D7296-7D22-4D7A-AB30-DF9F7324C4D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarClass", "CarClass\CarClass.csproj", "{71056CD9-2646-4E45-A717-8228792962CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{FA8D7296-7D22-4D7A-AB30-DF9F7324C4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA8D7296-7D22-4D7A-AB30-DF9F7324C4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA8D7296-7D22-4D7A-AB30-DF9F7324C4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71056CD9-2646-4E45-A717-8228792962CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71056CD9-2646-4E45-A717-8228792962CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71056CD9-2646-4E45-A717-8228792962CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71056CD9-2646-4E45-A717-8228792962CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
