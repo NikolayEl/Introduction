@@ -81,7 +81,7 @@ namespace CarClass
                 Console.WriteLine(tank.Fuel_level <= 5 ? "\t\t LOW FUEL" : "");
                 Console.WriteLine($"Engine is:\t {(engine.started() == true ? "started" : "stopped")}");
                 Console.WriteLine($"Speed:\t {speed} km/h");
-                Console.WriteLine($"ConsumptionPerSecond:\t {engine.ConsumptionPerSecond} liters.");
+                Console.WriteLine($"ConsumptionPerSecond:\t {(engine.started() ? engine.ConsumptionPerSecond: 0)} liters.");
                 Thread.Sleep(200);
             }
 
@@ -91,6 +91,7 @@ namespace CarClass
         {
             while (engine.started() && tank.Fuel_level > 0) 
             {
+                tank.Fuel_level -= engine.ConsumptionPerSecond;
                 Thread.Sleep(100);
             }
         }
