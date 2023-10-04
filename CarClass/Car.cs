@@ -84,24 +84,25 @@ namespace CarClass
                 Console.WriteLine($"Engine is:\t {(engine.started() == true ? "started" : "stopped")}");
                 Console.WriteLine($"Speed:\t {speed} km/h");
                 Console.WriteLine($"ConsumptionPerSecond:\t {(engine.started() ? engine.ConsumptionPerSecond: 0)} liters.");
-                Thread.Sleep(200);
+                Thread.Sleep(500);
             }
 
 
         }
         public void engile_idle()
         {
-            while (engine.started() && tank.Fuel_level > 0) 
+            while (engine.started() && tank.giveFuel(engine.ConsumptionPerSecond) > 0) 
+            //while (engine.started() && tank.Fuel_level > 0) 
             {
-                tank.Fuel_level -= engine.ConsumptionPerSecond;
-                Thread.Sleep(100);
+                //tank.Fuel_level -= engine.ConsumptionPerSecond;
+                Thread.Sleep(1000);
             }
         }
         public void freeWheeling()
         {
             while(--speed > 0)
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 engine.setConsumptionPerSecond(speed);
             }
         }
@@ -112,6 +113,7 @@ namespace CarClass
                 speed += acceleration;
                 if (speed > MaxSpeed) speed = MaxSpeed;
                 (threads.freeWheelingThread = new Thread(freeWheeling)).Start();
+                Thread.Sleep(1000);
             }
         }
         public void slowDown()
